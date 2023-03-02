@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [isSidebarOpen, setisSidebarOpen] = useState(false);
   return (
     <nav className="navbar">
       <div className="navbar-content">
@@ -33,8 +34,16 @@ const Navbar = () => {
 
         <div className="navbar-bottom bg-regal-blue">
           <div className="container flex flex-between">
-            <ul className="nav-links flex">
-              <button type="button" className="navbar-hide-btn text-white">
+            <ul
+              className={`nav-links flex ${
+                isSidebarOpen ? "show-nav-links" : ""
+              }`}
+            >
+              <button
+                type="button"
+                className="navbar-hide-btn text-white"
+                onClick={() => setisSidebarOpen(false)}
+              >
                 <i className="fas fa-times"></i>
               </button>
               <li>
@@ -43,7 +52,11 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-            <button type="button" className="navbar-show-btn text-gold">
+            <button
+              type="button"
+              className="navbar-show-btn text-gold"
+              onClick={() => setisSidebarOpen(true)}
+            >
               <i className="fas fa-bars"></i>
             </button>
           </div>
