@@ -1,8 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories, getallCategories } from "../../store/CategorySlice";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, []);
+  const catagories = useSelector(getallCategories);
+  console.log(catagories);
+
   const [isSidebarOpen, setisSidebarOpen] = useState(false);
   return (
     <nav className="navbar">
@@ -46,11 +56,22 @@ const Navbar = () => {
               >
                 <i className="fas fa-times"></i>
               </button>
-              <li>
+              {/* <li>
                 <Link to="/" className="nav-link text-white">
                   Demos
                 </Link>
-              </li>
+              </li> */}
+              {catagories.map((category) => (
+                <li key={category.id}>
+                  <Link
+                    to={`/categories/${category.id}`}
+                    className="nav-link text-white"
+                    onClick={() => setisSidebarOpen(false)}
+                  >
+                    {category.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
             <button
               type="button"
