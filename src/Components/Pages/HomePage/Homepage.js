@@ -9,6 +9,7 @@ import {
   fetchProductsByCategory,
 } from "../../../store/CategorySlice";
 import SingleCategory from "../../SingleCategory/SingleCategory";
+import { fetchProducts } from "../../../store/ProductSlice";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,12 @@ const Homepage = () => {
   const { catProductAll: productsByCategory, catProductAllStatus } =
     useSelector((state) => state.category);
 
+  const { data: products, status: productStatus } = useSelector(
+    (state) => state.product
+  );
+
   useEffect(() => {
+    dispatch(fetchProducts());
     dispatch(fetchCategories());
     dispatch(fetchProductsByCategory(1, "all"));
     dispatch(fetchProductsByCategory(2, "all"));
@@ -28,6 +34,8 @@ const Homepage = () => {
     <div className="home-page">
       <Slider></Slider>
       <Category categories={categories} status={categorystatus}></Category>
+
+      {<ProductList products={products} status={productStatus}></ProductList>}
 
       {/* category one products  */}
       <section>

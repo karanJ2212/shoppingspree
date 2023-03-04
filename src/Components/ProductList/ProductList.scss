@@ -1,0 +1,43 @@
+@import "../../App.scss";
+
+.product-items {
+  row-gap: 20px;
+  .product-item {
+    box-shadow: black;
+    padding: 18px;
+    border-radius: 4px;
+    &-body {
+      padding: 12px 0;
+    }
+    &-img {
+      position: relative;
+      .product-item-cat {
+        position: absolute;
+        top: 8px;
+        border-radius: 8px;
+        padding-right: 8px;
+        padding-left: 8px;
+        box-shadow: rgba(0, 00, 0.35);
+      }
+    }
+    &-title {
+      padding: 8px 0;
+      opacity: 0.8px;
+      display: block;
+    }
+  }
+
+  @media screen and (min-width: 576px) {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 20px;
+  }
+  @media screen and (min-width: 786px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (min-width: 992px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media screen and (min-width: px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

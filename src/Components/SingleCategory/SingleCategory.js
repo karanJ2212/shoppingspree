@@ -5,14 +5,25 @@ import SingleProduct from "../SingleProduct/SingleProduct";
 import Error from "../Error/Error";
 import { formatPrice } from "../../utils/helpers";
 import "./SingleCategory.scss";
+import { setModalData, setIsModalVisible } from "../../store/ModalSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const SingleCategory = ({ products, status }) => {
+  const dispatch = useDispatch();
+  const { isModalVisible } = useSelector((state) => state.modal);
+
+  const viewModalHaldler = (data) => {
+    dispatch(setModalData(data));
+    dispatch(setIsModalVisible(true));
+  };
+
   if (status === STATUS.Error) return <Error></Error>;
 
   if (status === STATUS.LOADING) return <Loader></Loader>;
 
   return (
     <section className="cat-single py-5 bg-host-white">
+      {isModalVisible && <SingleProduct></SingleProduct>}
       <div className="container">
         <div className="cat-single-content">
           <div className="section-title">
@@ -22,7 +33,11 @@ const SingleCategory = ({ products, status }) => {
           </div>
           <div className="product-items grid">
             {products.map((product) => (
-              <div className="product-item bg-white" key={product.id}>
+              <div
+                className="product-item bg-white"
+                key={product.id}
+                onClick={() => viewModalHaldler(product)}
+              >
                 <div className="product-item-img ">
                   <img src={product.images[0]} alt="" />
                   <div className="product-item-cat text-white fs-13 text-uppercase bg-gold fw-16">
