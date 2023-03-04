@@ -66,10 +66,11 @@ export const fetchCategories = () => {
   };
 };
 
-export const fetchProduchByCategory = (categoryID, dataType) => {
+export const fetchProductsByCategory = (categoryID, dataType) => {
   return async function fetchCategoryProductThunk(dispatch) {
     if (dataType === "all") dispatch(setCatProductAllStatus(STATUS.LOADING));
-    if (dataType === "single") dispatch(setCatProductAllStatus(STATUS.LOADING));
+    if (dataType === "single")
+      dispatch(setcatProductSingleStatus(STATUS.LOADING));
 
     try {
       const response = await fetch(

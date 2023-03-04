@@ -6,12 +6,11 @@ import { fetchCategories, getallCategories } from "../../store/CategorySlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-
+  const catagories = useSelector(getallCategories);
   useEffect(() => {
+    console.log("at navbar");
     dispatch(fetchCategories());
   }, []);
-  const catagories = useSelector(getallCategories);
-  console.log(catagories);
 
   const [isSidebarOpen, setisSidebarOpen] = useState(false);
   return (
