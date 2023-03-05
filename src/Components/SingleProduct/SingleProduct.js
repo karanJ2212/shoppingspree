@@ -7,6 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 const SingleProduct = () => {
   const dispatch = useDispatch();
 
+  const addToCartHandler = (product) => {
+    console.log(product);
+  };
+
   const { data: product } = useSelector((state) => state.modal);
   return (
     <div className="overlay-bg">
@@ -49,7 +53,11 @@ const SingleProduct = () => {
                   </button>{" "}
                 </div>
               </div>
-              <button type="button" className="btn-primary add-to-cart-btn">
+              <button
+                type="button"
+                className="btn-primary add-to-cart-btn"
+                onClick={addToCartHandler(product)}
+              >
                 <span className="btn-icon">
                   <i className="fas fa-cart-shopping"></i>
                 </span>
