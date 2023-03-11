@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/shoppingspree/static/css/main.020ce005.css",
-    "main.js": "/shoppingspree/static/js/main.2b6aa398.js",
+    "main.js": "/shoppingspree/static/js/main.27bb70be.js",
     "static/media/error.png": "/shoppingspree/static/media/error.923fd4a571feb41f1f1f.png",
     "static/media/slider_img_1.webp": "/shoppingspree/static/media/slider_img_1.8612bc297cbb18e69922.webp",
     "index.html": "/shoppingspree/index.html",
     "static/media/spinner.svg": "/shoppingspree/static/media/spinner.2498f9d3fee61f4ded35bedf651dc405.svg",
     "main.020ce005.css.map": "/shoppingspree/static/css/main.020ce005.css.map",
-    "main.2b6aa398.js.map": "/shoppingspree/static/js/main.2b6aa398.js.map"
+    "main.27bb70be.js.map": "/shoppingspree/static/js/main.27bb70be.js.map"
   },
   "entrypoints": [
     "static/css/main.020ce005.css",
-    "static/js/main.2b6aa398.js"
+    "static/js/main.27bb70be.js"
   ]
 }
