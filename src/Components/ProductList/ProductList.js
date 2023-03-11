@@ -32,7 +32,7 @@ const ProductList = ({ products, status }) => {
             </h3>
           </div>
           <div className="product-items grid">
-            {products.map((product) => (
+            {products.slice(0, 20).map((product) => (
               <div
                 className="product-item bg-white"
                 key={product.id}

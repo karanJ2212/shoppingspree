@@ -1,29 +1,25 @@
 import "./App.scss";
-
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+// pages
 import { Home, Category, Cart } from "./Components/Pages/index";
-
+// components
 import Navbar from "./Components/Navbar/Navbar";
-import Loader from "./Components/Loader/Loader";
 import Footer from "./Components/Footer/Footer";
-import store from "./store/store";
 import { Provider } from "react-redux";
+import store from "./store/store";
 
 function App() {
   return (
     <div className="App">
       <Provider store={store}>
         <BrowserRouter>
-          <Navbar></Navbar>
+          <Navbar />
           <Routes>
-            <Route path="/" element={<Home></Home>}></Route>
-            <Route path="/Cart" element={<Cart></Cart>}></Route>
-            <Route
-              path="/categories/:id"
-              element={<Category></Category>}
-            ></Route>
+            <Route path="/" element={<Home />} />
+            <Route path="/category/:id" element={<Category />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
-          <Footer></Footer>
+          <Footer />
         </BrowserRouter>
       </Provider>
     </div>

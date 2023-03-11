@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import BASE_URL from "../utils/apiURL";
 import STATUS from "../utils/status";
 
@@ -26,7 +26,7 @@ const categorySlice = createSlice({
       state.catProductAllStatus = action.payload;
     },
     setCatProductSingle(state, action) {
-      state.catProductSingle.push(action.payload);
+      state.catProductSingle = action.payload;
     },
     setcatProductSingleStatus(state, action) {
       state.catProductSingleStatus = action.payload;
@@ -44,14 +44,6 @@ export const {
 } = categorySlice.actions;
 export default categorySlice.reducer;
 
-// export const fetchCategories = createAsyncThunk(
-//   "category/fetchCategories",
-//   async () => {
-//     const response = await fetch(`${BASE_URL}categories`);
-//     const data = response.json();
-//     return data.slice(0, 5);
-//   }
-// );
 export const fetchCategories = () => {
   return async function fetchCategoryThunk(dispatch) {
     dispatch(setStatus(STATUS.LOADING));
@@ -78,20 +70,15 @@ export const fetchProductsByCategory = (categoryID, dataType) => {
       );
       const data = await response.json();
       if (dataType === "all") {
-        dispatch(setCatProductAllStatus(STATUS.IDLE));
         dispatch(setCatProductAll(data.slice(0, 10)));
+        dispatch(setCatProductAllStatus(STATUS.IDLE));
       }
       if (dataType === "single") {
         dispatch(setCatProductSingle(data.slice(0, 20)));
         dispatch(setcatProductSingleStatus(STATUS.IDLE));
       }
     } catch (error) {
-      if (dataType === "single") {
-        dispatch(setCatProductAllStatus(STATUS.ERROR));
-      }
-      if (dataType === "all") {
-        dispatch(setcatProductSingleStatus(STATUS.ERROR));
-      }
+      dispatch(setCatProductAllStatus(STATUS.ERROR));
     }
   };
 };

@@ -3,13 +3,17 @@ import "./Navbar.scss";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories, getallCategories } from "../../store/CategorySlice";
+import { getCartTotal } from "../../store/CartSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const catagories = useSelector(getallCategories);
+  const { totalItems } = useSelector((state) => state.cart);
   useEffect(() => {
     console.log("at navbar");
     dispatch(fetchCategories());
+    dispatch(getCartTotal());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [isSidebarOpen, setisSidebarOpen] = useState(false);
@@ -34,7 +38,7 @@ const Navbar = () => {
                   <i className="fas fa-shopping-cart"></i>
                 </span>
                 <div className="btn-txt fw-5">
-                  cart <span className="cart-count-value">0</span>
+                  cart <span className="cart-count-value">{totalItems}</span>
                 </div>
               </Link>
             </div>
@@ -63,7 +67,7 @@ const Navbar = () => {
               {catagories.map((category) => (
                 <li key={category.id}>
                   <Link
-                    to={`/categories/${category.id}`}
+                    to={`/category/${category.id}`}
                     className="nav-link text-white"
                     onClick={() => setisSidebarOpen(false)}
                   >

@@ -21,7 +21,7 @@ export default function Category({ categories, status }) {
 
           <div className="category-items grid">
             {categories.slice(0, 5).map((category) => (
-              <Link to={`/categories/${category.id}`} key={category.id}>
+              <Link to={`/category/${category.id}`} key={category.id}>
                 <div className="category-item">
                   <div className="category-item-img">
                     <img src={category.image} alt="" />
